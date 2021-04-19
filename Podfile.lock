@@ -1,0 +1,77 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - Bugly (2.5.0)
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - HappyDNS (0.3.15)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.0.0)
+  - MJRefresh (3.1.15.3)
+  - Qiniu (7.2.5):
+    - HappyDNS (~> 0.3)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - YTKNetwork (2.0.4):
+    - AFNetworking (~> 3.0)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - Bugly
+  - FMDB
+  - Masonry
+  - MBProgressHUD (~> 1.0.0)
+  - MJRefresh
+  - Qiniu (~> 7.1)
+  - SDWebImage (~> 3.8)
+  - YTKNetwork
+  - YYKit
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - Bugly
+    - FMDB
+    - HappyDNS
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - Qiniu
+    - SDWebImage
+    - YTKNetwork
+    - YYKit
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  HappyDNS: 00c15e651a347206e58a20503a32a5564589b56a
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+
+PODFILE CHECKSUM: 44078ebec8ede7eb1fa924e7d37a5d22a9f2afc0
+
+COCOAPODS: 1.9.1

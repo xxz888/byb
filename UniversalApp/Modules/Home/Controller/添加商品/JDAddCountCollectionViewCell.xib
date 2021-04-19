@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="JDAddCountCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="145" height="69"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="145" height="69"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Jwb-n7-8fW">
+                        <rect key="frame" x="0.0" y="0.0" width="145" height="69"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" image="icon_delete">
+                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="delCountAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="omE-IL-eRG"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmh-J4-n3T">
+                        <rect key="frame" x="0.0" y="0.0" width="125" height="69"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="wmh-J4-n3T" secondAttribute="bottom" id="8DS-cJ-Su9"/>
+                <constraint firstAttribute="trailing" secondItem="Jwb-n7-8fW" secondAttribute="trailing" id="9sy-ut-w97"/>
+                <constraint firstItem="Jwb-n7-8fW" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="Dbt-4Z-XNf"/>
+                <constraint firstAttribute="trailing" secondItem="wmh-J4-n3T" secondAttribute="trailing" constant="20" id="FGB-HS-6hx"/>
+                <constraint firstItem="Jwb-n7-8fW" firstAttribute="centerY" secondItem="SEy-5g-ep8" secondAttribute="centerY" id="KPh-ty-Rd5"/>
+                <constraint firstItem="Jwb-n7-8fW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Rd5-UJ-YC0"/>
+                <constraint firstItem="wmh-J4-n3T" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gdb-mb-1v1"/>
+                <constraint firstItem="wmh-J4-n3T" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jKn-7a-1fg"/>
+                <constraint firstItem="wmh-J4-n3T" firstAttribute="centerY" secondItem="Jwb-n7-8fW" secondAttribute="centerY" id="rLL-Nf-dvS"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="145" height="69"/>
+            <connections>
+                <outlet property="countTitleLbl" destination="wmh-J4-n3T" id="cTd-Hb-xwf"/>
+                <outlet property="delBtn" destination="Jwb-n7-8fW" id="uMg-Ag-jTf"/>
+            </connections>
+            <point key="canvasLocation" x="-1498" y="-125"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon_delete" width="16" height="16"/>
+    </resources>
+</document>

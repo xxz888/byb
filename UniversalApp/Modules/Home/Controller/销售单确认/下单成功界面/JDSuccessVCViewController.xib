@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JDSuccessVCViewController">
+            <connections>
+                <outlet property="chakanOrder" destination="Tuj-jC-c0h" id="xP4-sh-9hs"/>
+                <outlet property="printBtn" destination="TAC-qz-9h6" id="ttH-F7-7dP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAC-qz-9h6">
+                    <rect key="frame" x="20" y="222.5" width="335" height="41"/>
+                    <color key="backgroundColor" red="0.0" green="0.63921568630000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41" id="v4r-kP-ZWk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="打印">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="printOrderAction:" destination="-1" eventType="touchUpInside" id="3o7-bq-mav"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_chenggong" translatesAutoresizingMaskIntoConstraints="NO" id="UgP-it-Aqn">
+                    <rect key="frame" x="123" y="110.5" width="54" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="54" id="CYF-th-T8S"/>
+                        <constraint firstAttribute="height" constant="54" id="Zpj-yd-asP"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下单成功" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kB-fL-Idj">
+                    <rect key="frame" x="197" y="126" width="77.5" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tuj-jC-c0h">
+                    <rect key="frame" x="20" y="273.5" width="335" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41" id="erX-kt-HYA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="查看">
+                        <color key="titleColor" red="0.0" green="0.63921568630000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="chakanOrderAction:" destination="-1" eventType="touchUpInside" id="NgU-wQ-WzQ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Tuj-jC-c0h" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="3mH-TT-5UK"/>
+                <constraint firstItem="UgP-it-Aqn" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" multiplier="0.8" id="L5W-gD-bJ7"/>
+                <constraint firstItem="Tuj-jC-c0h" firstAttribute="width" secondItem="TAC-qz-9h6" secondAttribute="width" id="OrK-mD-OmC"/>
+                <constraint firstItem="UgP-it-Aqn" firstAttribute="centerY" secondItem="Q5M-cg-NOt" secondAttribute="centerY" multiplier="0.4" id="XEK-vF-iec"/>
+                <constraint firstItem="TAC-qz-9h6" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="ZHM-U8-OTq"/>
+                <constraint firstItem="TAC-qz-9h6" firstAttribute="top" secondItem="UgP-it-Aqn" secondAttribute="bottom" constant="58" id="dKF-TJ-dIF"/>
+                <constraint firstItem="Tuj-jC-c0h" firstAttribute="top" secondItem="TAC-qz-9h6" secondAttribute="bottom" constant="10" id="mTI-Dw-7wv"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="TAC-qz-9h6" secondAttribute="trailing" constant="20" id="sAT-Tf-6no"/>
+                <constraint firstItem="5kB-fL-Idj" firstAttribute="centerY" secondItem="UgP-it-Aqn" secondAttribute="centerY" id="v3R-Ln-CTJ"/>
+                <constraint firstItem="5kB-fL-Idj" firstAttribute="leading" secondItem="UgP-it-Aqn" secondAttribute="trailing" constant="20" id="xBa-eh-JGe"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="-143" y="73"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_chenggong" width="54" height="54"/>
+    </resources>
+</document>
