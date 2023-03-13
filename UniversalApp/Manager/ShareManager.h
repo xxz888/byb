@@ -93,4 +93,5 @@ SINGLETON_FOR_HEADER(ShareManager)
 -(BOOL)inOrderNameOutQuanXian:(NSString *)name subIndex:(NSString *)index;
 //收付款单
 -(void)moneyAction:(MainTabBarController * )tabbar;
+-(void)commonZhiFaDanTiaozhuan:(NSDictionary *)dic nav:(UINavigationController *)navigationController;
 @end

@@ -186,7 +186,8 @@ typedef void(^SuccessdBlockTypeParameter)(id object);
 -(void)requestAutoAddSp:AD_BLOCK;
 #pragma mark ========== 蓝牙打印show ==========
 -(void)requestBlueShow:AD_BLOCK;
-
+#pragma mark ========== 商品直发单审核和反核 ==========
+-(void)requestZhiFadanFanShenDan:AD_BLOCK;
 #pragma mark ========== 预定单单打印方式 ==========
 -(void)requestYuDingDanBluePrintWay:AD_BLOCK;
 #pragma mark ========== 商品销售单打印方式 ==========

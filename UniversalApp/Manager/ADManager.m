@@ -633,6 +633,14 @@ successBlock(responseObject);\
         
     }];
 }
+#pragma mark ========== 商品直发单审核和反核 ==========
+-(void)requestZhiFadanFanShenDan:AD_BLOCK{
+    [HTTP_POST(@"/note/spzf/CheckNote") Parameters:dic sucess:^(id responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSError *error) {
+        
+    }];
+}
 #pragma mark ========== 样品单审核和反核 ==========
 -(void)requestYangPinFanShenDan:AD_BLOCK{
     [HTTP_POST(@"/note/ypxs/CheckNote") Parameters:dic sucess:^(id responseObject) {

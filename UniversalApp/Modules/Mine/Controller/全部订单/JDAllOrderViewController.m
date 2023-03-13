@@ -16,6 +16,7 @@
 #import "JDNewAddShouKuanTableViewController.h"
 #import "JDSalesTagViewController.h"
 #import "JDOrder1FaHuoTableViewController.h"
+#import "JDZhiFaDan5TableViewController.h"
 @interface JDAllOrderViewController ()<UITableViewDelegate,UITableViewDataSource>{
 
 
@@ -45,7 +46,7 @@
                          @"/note/fk/GetFkList",
                          @"/note/spzf/list",
                          ];
-    _paramters2Array = @[@(-2),@(1),@(6),@(-1)];
+    _paramters2Array = @[@(-2),@(1),@(2),@(-1)];
     _titleArray = @[@"预定单历史",@"出库单历史",@"销售单历史",@"样品单历史",@"退货单历史",@"收款单历史",@"采购入库单历史",@"采购退货单历史",@"付款单历史",@"直发单历史"];
     _selectTag2 = 0;
     [self setValueTitle];
@@ -322,7 +323,7 @@
     
         AD_MANAGER.orderType = ZhiFaDan;
         if ([dic[@"djzt"] integerValue] == 1) {//草稿
-            [AD_SHARE_MANAGER commonXiaoShouDanTiaozhuan:dic nav:self.navigationController];
+            [AD_SHARE_MANAGER commonZhiFaDanTiaozhuan:dic nav:self.navigationController];
         }else if ([dic[@"djzt"] integerValue] == 2){//已审核
             [self cellBShenHeAction:dic];
         }
@@ -358,6 +359,20 @@
             [self cellBShenHeAction:dic];
         }
     }
+    else if ([self.titleBtn.titleLabel.text isEqualToString:@"直发单历史"]){
+        AD_MANAGER.orderType = ZhiFaDan;
+        if ([dic[@"djzt"] integerValue] == 1) {//草稿
+
+        }else if ([dic[@"djzt"] integerValue] == 2){//已审核
+            [self cellBShenHeAction:dic];
+        }
+    }
+    
+    
+    
+    
+    
+    
 }
 -(void)cellECommon:(NSString *)noteno djzt:(NSInteger)djzt{
     NSMutableDictionary * mDic2 = [AD_SHARE_MANAGER requestSameParamtersDic:@{}];

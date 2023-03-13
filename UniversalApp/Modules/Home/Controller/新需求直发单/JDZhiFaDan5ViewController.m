@@ -30,6 +30,7 @@
     self.jinjiaLbl.text = _jinjia;
     self.xiaojiaLbl.text = _xiaojia;
     self.totalCountLbl.text = _totalcount;
+    NSLog(@"%@,",NEW_AffrimDic_SectionArray);
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -238,31 +239,12 @@
         
     }
 }
-#pragma mark ========== 所有单子的草稿方法 ==========
-- (IBAction)saveDraftAction:(id)sender {
-    [self XiaoShouDanCommonAction:0];
-}
+
 #pragma mark ========== 所有单子的下单方法 ==========
 - (IBAction)selectOKAction:(id)sender {
     [self setXiaoShouDanAction];
 }
-#pragma mark ========== 销售单存下单和草稿不通用方法 ==========
--(void)XiaoShouDanCommonAction:(NSInteger)autoCheck{
-    [self allOrderCommonParamters];
-    [AD_MANAGER.caoGaoDic setValue:AD_MANAGER.affrimDic[@"dingjinArray"] forKey:@"tbnote_spxscb_sks"];//收款列表
-    [AD_MANAGER.caoGaoDic setValue:AD_MANAGER.affrimDic[@"zhekouArray"] forKey:@"tbnote_spxscb_zks"];//折扣列表
-    [AD_MANAGER.caoGaoDic setValue:[self allOrderXiaoShouTuiHuoListCommonParamtersArray] forKey:@"tbnote_spxscbs"];//商品列表
-    kWeakSelf(self);//autocheck 自动审核 1:是(默认) 0:仅存草稿
-    NSString * string = [ADTool dicConvertToNSString:AD_MANAGER.caoGaoDic];
-    NSMutableDictionary * mDic = [AD_SHARE_MANAGER requestSameParamtersDic:@{@"data":string,@"autocheck":@(autoCheck)}];
-    [AD_MANAGER requestNoteSpxsSaveNote:mDic success:^(id object) {
-        UIStoryboard * stroryBoard4 = [UIStoryboard storyboardWithName:@"ForthVC" bundle:nil];
-        [weakself showToast:object[@"data"]];
-        JDAllOrderViewController * VC = [stroryBoard4 instantiateViewControllerWithIdentifier:@"JDAllOrderViewController"];
-        VC.selectTag1 = 2;
-        [weakself.navigationController pushViewController:VC animated:YES];
-    }];
-}
+
 #pragma mark ========== 销售单下单,跳转下一步收款界面 ==========
 -(void)setXiaoShouDanAction{
     UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"XinXuQiu" bundle:nil];
