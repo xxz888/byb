@@ -71,10 +71,14 @@
     if ([keywords isEqualToString:@""]) {
         dic  = @{@"pno":@"1",@"pagesize":@"500",@"djzt":type};
         mDic = [AD_SHARE_MANAGER requestSameParamtersDic:dic];
-        //如果是直发单历史
+        //如果是直发单历史_selectTag2
         if ([paramters isEqualToString:@"/note/spzf/list"]) {
+            NSInteger zt = _selectTag2  == 0 ? -2 :
+                           _selectTag2  == 1 ? 2 :
+                           _selectTag2  == 2 ? 3 :
+                           _selectTag2  == 3 ? 1 : 0;
             NSString * string = [ADTool dicConvertToNSString:@{
-                                                               @"zt":@([type intValue]),
+                @"zt":@(zt),
                                                                @"begindate":@"2018-01-01T00:00:00",
                                                                @"enddate":[NSString currentDateString],
                                                                @"djhm":@"",
@@ -323,8 +327,8 @@
     
         AD_MANAGER.orderType = ZhiFaDan;
         if ([dic[@"djzt"] integerValue] == 1) {//草稿
-//            [AD_SHARE_MANAGER commonZhiFaDanTiaozhuan:dic nav:self.navigationController];
-            [self showToast:@"直发单暂未开通草稿功能"];
+            [AD_SHARE_MANAGER commonZhiFaDanTiaozhuan:dic nav:self.navigationController];
+//            [self showToast:@"直发单暂未开通草稿功能"];
         }else if ([dic[@"djzt"] integerValue] == 2){//已审核
             [self cellBShenHeAction:dic];
         }

@@ -177,7 +177,7 @@
         //进价
         cell.jinjiaLbl.text = [@"进价: " append:kGet2fDouble(colorModel.cbdj)];
         //
-        cell.lbl1.text = @"1匹";
+        cell.lbl1.text = [NSString stringWithFormat:@"%ld",[colorModel.psArray count]];
         //
         NSMutableArray * colorArray = [[NSMutableArray alloc]initWithArray:NEW_AffrimDic_SectionArray[indexPath.section][spid][@"color"][indexPath.row][@"colArray"]];
         double jisuanCount = 0.0;

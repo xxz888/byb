@@ -835,6 +835,7 @@ SINGLETON_FOR_CLASS(ShareManager);
                 //最后一步开始造最难的colorModel
                 //第一步先拿到颜色model的数组
                 NSMutableArray * spidArray = [[NSMutableArray alloc]init];
+
                 for (NSDictionary * dic in resultDic[@"tbnote_spzfcbs"]) {
                     JDAddColorModel * colorModel = [[JDAddColorModel alloc]init];
                     [colorModel setValuesForKeysWithDictionary:dic];
@@ -852,6 +853,7 @@ SINGLETON_FOR_CLASS(ShareManager);
                     
                     [colorArray addObject:colorModel];
                     [spidArray addObject:NSIntegerToNSString([dic[@"spid"] integerValue])];
+                    
                 }
                 NSSet *set = [NSSet setWithArray:spidArray];
                 [spidArray removeAllObjects];
@@ -894,7 +896,7 @@ SINGLETON_FOR_CLASS(ShareManager);
                             }
                         }
                         [dic3 setValue:psArray forKey:ysStr];
-                        
+
                     }
                     // 去除数组中model重复
                     //保留第一个元素，增加psarray
@@ -909,14 +911,14 @@ SINGLETON_FOR_CLASS(ShareManager);
                         }
                     }
                     NSMutableArray * arr3 = AD_MANAGER.sectionArray[i][[AD_MANAGER.sectionArray[i] allKeys][0]];
-                    
+
                     for ( JDAddColorModel * colorModel3 in arr3) {
                         colorModel3.psArray = dic3[colorModel3.ys];
                         NSMutableArray * newArray = [[NSMutableArray alloc]init];
                         for (NSDictionary * dic in colorModel3.psArray) {
                             [newArray addObject:dic[@"spsl"]];
                         }
-        
+
                     }
                     
                     
@@ -975,8 +977,18 @@ SINGLETON_FOR_CLASS(ShareManager);
                         NSMutableArray * zfArr2 = [[NSMutableArray alloc]init];
                         
                         JDAddColorModel * colorModel1 = nil;
+                        
                         for (JDAddColorModel * colorModel in dic[key]) {
-                            [zfArr2 addObject:@{@"colArray":@[colorModel.saveCount],@"model":colorModel}];
+                            
+                            NSMutableArray * arr111 = [[NSMutableArray alloc]init];
+                            
+                            for (JDAddColorModel * colorModel111 in colorArray) {
+                                if (colorModel111.spid == colorModel.spid && [colorModel111.sh isEqualToString:colorModel.sh] ) {
+                                    NSInteger saveCount = [colorModel111.saveCount integerValue];
+                                    [arr111 addObject:@(saveCount)];
+                                }
+                            }
+                            [zfArr2 addObject:@{@"colArray":arr111,@"model":colorModel}];
                             colorModel1 = colorModel;
                         }
                         NSDictionary * dic2 = @{key:@{@"color":zfArr2,@"sp":[self inShangPinIdOutModel:colorModel1.spid] }};
@@ -988,9 +1000,15 @@ SINGLETON_FOR_CLASS(ShareManager);
                 
                 [AD_MANAGER.sectionArray removeAllObjects];
                 AD_MANAGER.sectionArray = zfArr1;
-          
+
                 UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"XinXuQiu" bundle:nil];
                 JDZhiFaDan5ViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"JDZhiFaDan5ViewController"];
+                
+
+                [self jisuanAllPrice:VC];
+                
+                
+                
                 [AD_MANAGER.affrimDic removeAllObjects];
                 [AD_MANAGER.affrimDic setValue:resultDic[@"khmc"] forKey:@"khmc"];
                 [AD_MANAGER.affrimDic setValue:resultDic[@"shdz"] forKey:@"shdz"];
@@ -1014,9 +1032,8 @@ SINGLETON_FOR_CLASS(ShareManager);
                 [AD_MANAGER.affrimDic setValue:@"YES" forKey:@"where"];
                 AD_MANAGER.caoGaoDic = [NSMutableDictionary dictionaryWithDictionary:resultDic];
                 
-                AD_MANAGER.affrimDic[@"sectionArray"] = AD_MANAGER.sectionArray;
 
-                NSLog(@"%@,",NEW_AffrimDic_SectionArray);
+                AD_MANAGER.affrimDic[@"sectionArray"] = AD_MANAGER.sectionArray;
 
                 
                 
@@ -1026,7 +1043,34 @@ SINGLETON_FOR_CLASS(ShareManager);
         }];    }];
    
 }
+-(void)jisuanAllPrice:(JDZhiFaDan5ViewController *)VC{
+        double allPrice  = 0;
+        double jinjiaAllPrice  = 0;
+        NSInteger allCount = 0;
+        //键盘消失的时候，开始计算总计价格
+        for (NSInteger i = 0 ; i < [NEW_AffrimDic_SectionArray count]; i++) {
+            NSString * key = [NEW_AffrimDic_SectionArray[i] allKeys][0];
+            NSArray * countArr = NEW_AffrimDic_SectionArray[i][key][@"color"];
+            for (NSInteger k = 0; k < countArr.count; k++) {
+                NSDictionary * dic = countArr[k];
+                JDAddColorModel * colorModel = dic[@"model"];
+                double colorArrayAllCount = 0.00;
+                //计算数组所有count的之和
+                    for (NSString * countString in dic[@"colArray"]) {
+                        colorArrayAllCount += [countString doubleValue];
+                    }
+                    double xiaojiaPrice = [colorModel.saveXiaoJiaPrice doubleValue] ? [colorModel.saveXiaoJiaPrice doubleValue] : colorModel.xsdj;
+                
+                    allPrice = allPrice + colorArrayAllCount * xiaojiaPrice;
+                    jinjiaAllPrice = jinjiaAllPrice + colorArrayAllCount * colorModel.cbdj;
+                }
+        }
+    VC.jinjia = [[NSString stringWithFormat:@"%.2f",allPrice] concate:@"¥"];
+    VC.xiaojia = [[NSString stringWithFormat:@"%.2f",jinjiaAllPrice] concate:@"¥"];
+    VC.totalcount = [NSString stringWithFormat:@"%ld",[NEW_AffrimDic_SectionArray count]];
+    
 
+}
 
 //采购入库单进到草稿的通用方法
 -(void)commonCaiGouRuKuDanTiaozhuan:(NSDictionary *)dic nav:(UINavigationController *)navigationController{

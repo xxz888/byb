@@ -501,7 +501,7 @@
 
 -(NSMutableArray *)getTbnote_spzfcbsArr{
     //商品的字典
-    NSMutableArray * tbnote_spzfcbs = [[NSMutableArray alloc]init];
+    NSMutableArray * tbnote_spzfcbsAll = [[NSMutableArray alloc]init];
 
     for (NSDictionary * dic in NEW_AffrimDic_SectionArray) {
         NSArray * arr = [dic allKeys];
@@ -518,52 +518,60 @@
         
         
         for (NSDictionary * dic1 in spDic[@"color"]) {
-            //1、商品单个的字典
-            NSMutableDictionary * tbnote_spzfcbsDic = [[NSMutableDictionary alloc]init];
-            [tbnote_spzfcbsDic setValue:@(spModel.spid) forKey:@"spid"];
-            [tbnote_spzfcbsDic setValue:@(0) forKey:@"dnxh"];
-            [tbnote_spzfcbsDic setValue:@"" forKey:@"sphh"];
-            [tbnote_spzfcbsDic setValue:@"" forKey:@"spmc"];
-            [tbnote_spzfcbsDic setValue:@(0) forKey:@"cdid"];
-            [tbnote_spzfcbsDic setValue:@"" forKey:@"cdbm"];
-            [tbnote_spzfcbsDic setValue:@"" forKey:@"cdmc"];
             
-            [tbnote_spzfcbsDic setValue:@"" forKey:@"sh"];
-            [tbnote_spzfcbsDic setValue:@"" forKey:@"ys"];
-            [tbnote_spzfcbsDic setValue:@"" forKey:@"jldw"];
-            [tbnote_spzfcbsDic setValue:@"" forKey:@"fjldw"];
-            [tbnote_spzfcbsDic setValue:@(1) forKey:@"spps"];
-            [tbnote_spzfcbsDic setValue:@(0) forKey:@"spfsl"];
-            [tbnote_spzfcbsDic setValue:@(0) forKey:@"jjfs"];
+       
             
-            [tbnote_spzfcbsDic setValue:@(0) forKey:@"jhkc"];
-            [tbnote_spzfcbsDic setValue:@(0) forKey:@"jhdj"];//进货单价
-            [tbnote_spzfcbsDic setValue:@(0) forKey:@"jhje"];//进货金额 这两个没有要求是吧
-            [tbnote_spzfcbsDic setValue:@(0)forKey:@"xskc"];
-            [tbnote_spzfcbsDic setValue:@"" forKey:@"khkh"];
-            [tbnote_spzfcbsDic setValue:@"" forKey:@"bz"];
-            
-            
-            //得到颜色数组
-            JDAddColorModel * colorModel = dic1[@"model"];
-            [tbnote_spzfcbsDic setValue:colorModel.sh forKey:@"sh"];
-            double xsdj = colorModel.saveXiaoJiaPrice ? [colorModel.saveXiaoJiaPrice doubleValue] : colorModel.xsdj;
-            [tbnote_spzfcbsDic setValue:@(xsdj) forKey:@"xsdj"];
-            
+            NSMutableArray * tbnote_spzfcbs = [[NSMutableArray alloc]init];
+
             //商品匹数数组
             for (NSString * spsl in dic1[@"colArray"]) {
+                
+                //1、商品单个的字典
+                NSMutableDictionary * tbnote_spzfcbsDic = [[NSMutableDictionary alloc]init];
+                [tbnote_spzfcbsDic setValue:@(spModel.spid) forKey:@"spid"];
+                [tbnote_spzfcbsDic setValue:@(0) forKey:@"dnxh"];
+                [tbnote_spzfcbsDic setValue:@"" forKey:@"sphh"];
+                [tbnote_spzfcbsDic setValue:@"" forKey:@"spmc"];
+                [tbnote_spzfcbsDic setValue:@(0) forKey:@"cdid"];
+                [tbnote_spzfcbsDic setValue:@"" forKey:@"cdbm"];
+                [tbnote_spzfcbsDic setValue:@"" forKey:@"cdmc"];
+                
+                [tbnote_spzfcbsDic setValue:@"" forKey:@"sh"];
+                [tbnote_spzfcbsDic setValue:@"" forKey:@"ys"];
+                [tbnote_spzfcbsDic setValue:@"" forKey:@"jldw"];
+                [tbnote_spzfcbsDic setValue:@"" forKey:@"fjldw"];
+                [tbnote_spzfcbsDic setValue:@(1) forKey:@"spps"];
+                [tbnote_spzfcbsDic setValue:@(0) forKey:@"spfsl"];
+                [tbnote_spzfcbsDic setValue:@(0) forKey:@"jjfs"];
+                
+                [tbnote_spzfcbsDic setValue:@(0) forKey:@"jhkc"];
+                [tbnote_spzfcbsDic setValue:@(0) forKey:@"jhdj"];//进货单价
+                [tbnote_spzfcbsDic setValue:@(0) forKey:@"jhje"];//进货金额 这两个没有要求是吧
+                [tbnote_spzfcbsDic setValue:@(0)forKey:@"xskc"];
+                [tbnote_spzfcbsDic setValue:@"" forKey:@"khkh"];
+                [tbnote_spzfcbsDic setValue:@"" forKey:@"bz"];
+                
+                //得到颜色数组
+                JDAddColorModel * colorModel = dic1[@"model"];
+                [tbnote_spzfcbsDic setValue:colorModel.sh forKey:@"sh"];
+                double xsdj = colorModel.saveXiaoJiaPrice ? [colorModel.saveXiaoJiaPrice doubleValue] : colorModel.xsdj;
+                [tbnote_spzfcbsDic setValue:@(xsdj) forKey:@"xsdj"];
+                
                 [tbnote_spzfcbsDic setValue:@([spsl intValue]) forKey:@"spsl"];
                 [tbnote_spzfcbsDic setValue:@(xsdj * [spsl intValue]) forKey:@"xsje"];
                 //遍历完一次加一次
                 [tbnote_spzfcbs addObject:tbnote_spzfcbsDic];
             }
+            
+            
+            [tbnote_spzfcbsAll addObjectsFromArray:tbnote_spzfcbs];
+
         }
         
         
         
-        
     }
-    return tbnote_spzfcbs;
+    return tbnote_spzfcbsAll;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     [self textFieldShouldReturn:textField];
