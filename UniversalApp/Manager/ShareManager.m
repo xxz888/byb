@@ -829,6 +829,8 @@ SINGLETON_FOR_CLASS(ShareManager);
             [AD_MANAGER requestSelectKhPage:mDic success:^(id str) {//客户信息请求
                 
                 
+    
+                
                 NSMutableArray * colorArray = [[NSMutableArray alloc]init];
                 //最后一步开始造最难的colorModel
                 //第一步先拿到颜色model的数组
@@ -843,10 +845,10 @@ SINGLETON_FOR_CLASS(ShareManager);
                     [colorModel setValue:doubleToNSString([dic[@"spkc"] doubleValue]) forKey:@"savekongcha"];
                     
                     [colorModel setValue:dic[@"jldw"] forKey:@"saveDanWei"];
-                    [colorModel setValue:doubleToNSString([dic[@"xssl"] doubleValue]) forKey:@"saveCount"];
+                    [colorModel setValue:doubleToNSString([dic[@"spsl"] doubleValue]) forKey:@"saveCount"];
                     
                     [colorModel setValue:dic[@"fjldw"] forKey:@"saveFuDanWei"];
-                    [colorModel setValue:doubleToNSString([dic[@"xsfsl"] doubleValue]) forKey:@"saveFuCount"];
+                    [colorModel setValue:doubleToNSString([dic[@"spfsl"] doubleValue]) forKey:@"saveFuCount"];
                     
                     [colorArray addObject:colorModel];
                     [spidArray addObject:NSIntegerToNSString([dic[@"spid"] integerValue])];
@@ -858,7 +860,6 @@ SINGLETON_FOR_CLASS(ShareManager);
                 //拼接出来以spid为key的数组
                 for (NSString * spidStr in spidArray) {
                     [AD_MANAGER.sectionArray addObject:@{spidStr:[[NSMutableArray alloc]init]}];
-                    
                 }
                 for (JDAddColorModel * colorModel in colorArray) {
                     for (NSInteger i = 0; i < spidArray.count; i++) {
@@ -889,7 +890,7 @@ SINGLETON_FOR_CLASS(ShareManager);
                         NSMutableArray * psArray = [[NSMutableArray alloc]init];
                         for (JDAddColorModel * colorModel in arr2) {
                             if ([colorModel.ys isEqualToString:ysStr]) {
-                                [psArray addObject:@{@"xssl":colorModel.saveCount,@"xsfsl":colorModel.saveFuCount}];
+                                [psArray addObject:@{@"spsl":colorModel.saveCount,@"spfsl":colorModel.saveFuCount}];
                             }
                         }
                         [dic3 setValue:psArray forKey:ysStr];
@@ -913,7 +914,7 @@ SINGLETON_FOR_CLASS(ShareManager);
                         colorModel3.psArray = dic3[colorModel3.ys];
                         NSMutableArray * newArray = [[NSMutableArray alloc]init];
                         for (NSDictionary * dic in colorModel3.psArray) {
-                            [newArray addObject:dic[@"xssl"]];
+                            [newArray addObject:dic[@"spsl"]];
                         }
         
                     }
@@ -922,25 +923,72 @@ SINGLETON_FOR_CLASS(ShareManager);
                 }
                 
                 
-
+                //                {
+                //                1 =         {
+                //                    color =             (
+                //                                        {
+                //                            colArray =                     (
+                //                                10
+                //                            );
+                //                            model = "<JDAddColorModel: 0x600002329520>";
+                //                        },
+                //                                        {
+                //                            colArray =                     (
+                //                                20
+                //                            );
+                //                            model = "<JDAddColorModel: 0x60000232d2b0>";
+                //                        }
+                //                    );
+                //                    sp = "<JDSelectSpModel: 0x600003318850>";
+                //                };
+                //            }
+//                {
 //                1 =         {
 //                    color =             (
 //                                        {
 //                            colArray =                     (
-//                                1
+//                                10,
+//                                20,
+//                                30
 //                            );
-//                            model = "<JDAddColorModel: 0x6000032a8dd0>";
+//                            model = "<JDAddColorModel: 0x600001dcf9b0>";
 //                        },
 //                                        {
 //                            colArray =                     (
-//                                2
+//                                40,
+//                                50,
+//                                60
 //                            );
-//                            model = "<JDAddColorModel: 0x6000032a5860>";
+//                            model = "<JDAddColorModel: 0x600001dadfb0>";
 //                        }
 //                    );
-//                    sp = "<JDSelectSpModel: 0x6000022b0ee0>";
+//                    sp = "<JDSelectSpModel: 0x600000d5c0e0>";
 //                };
+//            }
+           
 
+                    NSMutableArray * zfArr1 = [[NSMutableArray alloc]init];
+                    for (NSInteger i = 0; i < [ADManager sharedInstance].sectionArray.count; i++) {
+                        
+                        NSDictionary * dic = [ADManager sharedInstance].sectionArray[i];
+                        NSString * key = [dic allKeys][0];
+                        NSMutableArray * zfArr2 = [[NSMutableArray alloc]init];
+                        
+                        JDAddColorModel * colorModel1 = nil;
+                        for (JDAddColorModel * colorModel in dic[key]) {
+                            [zfArr2 addObject:@{@"colArray":@[colorModel.saveCount],@"model":colorModel}];
+                            colorModel1 = colorModel;
+                        }
+                        NSDictionary * dic2 = @{key:@{@"color":zfArr2,@"sp":[self inShangPinIdOutModel:colorModel1.spid] }};
+                        
+                        [zfArr1 addObject:dic2];
+             
+                    }
+      
+                
+                [AD_MANAGER.sectionArray removeAllObjects];
+                AD_MANAGER.sectionArray = zfArr1;
+          
                 UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"XinXuQiu" bundle:nil];
                 JDZhiFaDan5ViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"JDZhiFaDan5ViewController"];
                 [AD_MANAGER.affrimDic removeAllObjects];
@@ -978,6 +1026,8 @@ SINGLETON_FOR_CLASS(ShareManager);
         }];    }];
    
 }
+
+
 //采购入库单进到草稿的通用方法
 -(void)commonCaiGouRuKuDanTiaozhuan:(NSDictionary *)dic nav:(UINavigationController *)navigationController{
     //如果是草稿，就要造数据   造3个数据 1、clientModel 2 、coloModel 3、钱数
