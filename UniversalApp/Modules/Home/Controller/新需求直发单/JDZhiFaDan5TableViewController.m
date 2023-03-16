@@ -19,6 +19,7 @@
 #import "JDSalesActionViewController.h"
 #import "JDSelectClientModel.h"
 #import "JDZhiFaDan5TableViewCell.h"
+#import "JDZhiFaDan4ViewController.h"
 @interface JDZhiFaDan5TableViewController ()<UITextViewDelegate,UITextFieldDelegate>
 /** 动态cell的数据源 */
 @property (nonatomic, strong) NSMutableArray *runArr;
@@ -61,8 +62,16 @@
 -(void)allUIControlGetValue{
     JDSelectClientModel * kehuModel = NEW_AffrimDic[@"kehu"];
     JDSelectClientModel * gysModel = NEW_AffrimDic[@"gongyingshang"];
+    
+
     [self.btn0 setTitle:gysModel.gysmc forState:0];
+
     [self.btn1 setTitle:kehuModel.khmc forState:0];
+    
+    
+    if (!gysModel.gysmc) {
+        [self.btn0 setTitle:NEW_AffrimDic[@"gysmc"] forState:0];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -72,8 +81,8 @@
 }
 //点击编辑和挑选商品的通用方法
 -(void)clickEditAndGoOnSpAction{
-    UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"FirstVC" bundle:nil];
-    JDAddSpViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"JDAddSpViewController"];
+    UIStoryboard * stroryBoard = [UIStoryboard storyboardWithName:@"XinXuQiu" bundle:nil];
+    JDZhiFaDan4ViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"JDZhiFaDan4ViewController"];
     if (AD_MANAGER.affrimDic[@"where"] && [AD_MANAGER.affrimDic[@"where"] isEqualToString:@"YES"]) {
         [self.navigationController pushViewController:VC animated:YES];
     }else{

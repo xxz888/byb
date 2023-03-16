@@ -327,8 +327,8 @@
     
         AD_MANAGER.orderType = ZhiFaDan;
         if ([dic[@"djzt"] integerValue] == 1) {//草稿
-            [AD_SHARE_MANAGER commonZhiFaDanTiaozhuan:dic nav:self.navigationController];
-//            [self showToast:@"直发单暂未开通草稿功能"];
+ //           [AD_SHARE_MANAGER commonZhiFaDanTiaozhuan:dic nav:self.navigationController];
+        [self showToast:@"直发单暂未开通草稿功能"];
         }else if ([dic[@"djzt"] integerValue] == 2){//已审核
             [self cellBShenHeAction:dic];
         }

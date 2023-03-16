@@ -251,7 +251,7 @@
     JDZhiFaDan6ViewController * VC = [stroryBoard instantiateViewControllerWithIdentifier:@"JDZhiFaDan6ViewController"];
     VC.allPrice =  self.xiaojia;
     [self allOrderCommonParamters];
-    VC.allOrderXiaoShouTuiHuoListCommonParamtersArray = [NSMutableArray arrayWithArray:[self allOrderXiaoShouTuiHuoListCommonParamtersArray]];
+    VC.allOrderXiaoShouTuiHuoListCommonParamtersArray = @[];
     [self.navigationController pushViewController:VC animated:YES];
 }
 -(NSString *)inKeyOutSpid:(NSInteger)i{

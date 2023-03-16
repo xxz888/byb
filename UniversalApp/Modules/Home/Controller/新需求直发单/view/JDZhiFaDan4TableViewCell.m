@@ -98,7 +98,7 @@
 
     NSString * spid = [NEW_AffrimDic_SectionArray[self.indexPath.section] allKeys][0];
     NSString * string = NEW_AffrimDic_SectionArray[self.indexPath.section][spid][@"color"][self.indexPath.row][@"colArray"][indexPath.row];
-    cell.title.text = [string append:self.spModel.jldw];
+    cell.title.text = [[NSString stringWithFormat:@"%@",string] append:self.spModel.jldw];
     kWeakSelf(self);
     cell.delBlock = ^(NSInteger index) {
         NSString * spid = [NEW_AffrimDic_SectionArray[self.indexPath.section] allKeys][0];

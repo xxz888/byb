@@ -282,6 +282,17 @@ SINGLETON_FOR_CLASS(ShareManager);
     }
 
     return clientModel1;
+}//传客户名字,传出客户model
+-(JDSelectClientModel *)inKeHuNameOutGongYingShangId:(NSString *)name{
+    
+    for (JDSelectClientModel * clientModel in AD_MANAGER.selectKhPageArray) {
+            if ([clientModel.gysmc isEqualToString:name]) {
+                return clientModel;
+            }
+    }
+
+
+    return nil;
 }
 -(void)getTuiHuo:(NSDictionary *)resultDic{
     NSMutableArray * colorArray = [[NSMutableArray alloc]init];
@@ -828,8 +839,7 @@ SINGLETON_FOR_CLASS(ShareManager);
         [AD_MANAGER requestSelectSpPage:mDic2 success:^(id str) {//商品信息数组请求
             [AD_MANAGER requestSelectKhPage:mDic success:^(id str) {//客户信息请求
                 
-                
-    
+
                 
                 NSMutableArray * colorArray = [[NSMutableArray alloc]init];
                 //最后一步开始造最难的colorModel
@@ -1010,6 +1020,19 @@ SINGLETON_FOR_CLASS(ShareManager);
                 
                 
                 [AD_MANAGER.affrimDic removeAllObjects];
+                
+                
+                
+//                JDSelectClientModel * kehuModel = NEW_AffrimDic[@"kehu"];
+//                JDSelectClientModel * gysModel = NEW_AffrimDic[@"gongyingshang"];
+                
+                
+                
+                [AD_MANAGER.affrimDic setValue:[AD_SHARE_MANAGER inKeHuNameOutKeHuId:[NSString stringWithFormat:@"%@",resultDic[@"khmc"]]] forKey:@"kehu"];
+                [AD_MANAGER.affrimDic setValue:[AD_SHARE_MANAGER inKeHuNameOutGongYingShangId:[NSString stringWithFormat:@"%@",resultDic[@"gysmc"]]] forKey:@"gongyingshang"];
+                
+                
+                [AD_MANAGER.affrimDic setValue:resultDic[@"gysmc"] forKey:@"gysmc"];
                 [AD_MANAGER.affrimDic setValue:resultDic[@"khmc"] forKey:@"khmc"];
                 [AD_MANAGER.affrimDic setValue:resultDic[@"shdz"] forKey:@"shdz"];
                 [AD_MANAGER.affrimDic setValue:resultDic[@"ckmc"] forKey:@"ckmc"];
