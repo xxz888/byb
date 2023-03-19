@@ -1,4 +1,5 @@
 platform :ios, '8.0'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 target 'UniversalApp' do
 pod 'MJRefresh'
 pod 'AFNetworking', '~> 3.0'

@@ -557,7 +557,7 @@
                 double xsdj = colorModel.saveXiaoJiaPrice ? [colorModel.saveXiaoJiaPrice doubleValue] : colorModel.xsdj;
                 [tbnote_spzfcbsDic setValue:@(xsdj) forKey:@"xsdj"];
                 
-                [tbnote_spzfcbsDic setValue:@([spsl intValue]) forKey:@"spsl"];
+                [tbnote_spzfcbsDic setValue:[NSString stringWithFormat:@"%.2f",[spsl doubleValue]] forKey:@"spsl"];
                 [tbnote_spzfcbsDic setValue:@(xsdj * [spsl intValue]) forKey:@"xsje"];
                 //遍历完一次加一次
                 [tbnote_spzfcbs addObject:tbnote_spzfcbsDic];

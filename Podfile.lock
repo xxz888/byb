@@ -46,7 +46,7 @@ DEPENDENCIES:
   - YYKit
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  file:///Users/mac/.cocoapods/repos/master/.git:
     - AFNetworking
     - Bugly
     - FMDB
@@ -72,6 +72,6 @@ SPEC CHECKSUMS:
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 44078ebec8ede7eb1fa924e7d37a5d22a9f2afc0
+PODFILE CHECKSUM: 7064bbe3717bd43e28f899183e6e804a511e1b08
 
 COCOAPODS: 1.11.3
